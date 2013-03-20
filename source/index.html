@@ -1,0 +1,28 @@
+---
+layout: default
+index_issue: 1
+---
+<div class='container'>
+    <div class='hero-unit'>
+        <h1>{{ site.title }}</h1>
+        <p>The issues of the day</p>
+    </div>
+</div>
+<div class="blog-index">
+    {% assign index = true %}
+    {% for site_page in site.pages %}
+        {% if page.index_issue == site_page.issue %}
+            <section>
+                <h1><a href='{{ site_page.url }}'>{{site_page.title}}</a></h1>
+                {% for post in site.posts %}
+                    {% if post.issues contains site_page.issue %}
+                        {% assign content = post.content %}
+                        <article>
+                            {% include article.html %}
+                        </article>
+                    {% endif %}
+                {% endfor %}
+            </section>
+        {% endif %}
+    {% endfor %}
+</div>

@@ -1,0 +1,19 @@
+---
+layout: default
+header: false
+---
+{% assign index = true %}
+<div class='hero-unit'>
+    <h1>{{ page.title }}</h1>
+    <p>{{page.sub_title}}</p>
+</div>
+<article role="article">
+    {% for post in site.posts %}
+        {% if post.issues contains page.issue %}
+            {% assign content = post.content %}
+            <article>
+                {% include article.html %}
+            </article>
+        {% endif %}
+    {% endfor %}
+</article>

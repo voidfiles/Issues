@@ -1,0 +1,22 @@
+{% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
+<html>
+    <head>
+        <title>{{ site.title }}</title>
+        {% stylesheet main %}
+    </head>
+    <body>
+        <div id="main">
+            {% if page.header %}
+            <div class='container'>
+                <div class='hero-unit'>
+                    <h1>{{ site.title }}</h1>
+                </div>
+            </div>
+            {% endif %}
+            <div id="content" class='container'>
+                {{ content | expand_urls: root_url }}
+            </div>
+        </div>
+        <footer role="contentinfo"></footer>
+    </body>
+</html>
