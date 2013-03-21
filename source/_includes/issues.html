@@ -1,0 +1,20 @@
+{% assign found_first = false %}
+
+<div class='yui3-g'>
+{% sorted_for post in site.posts sort_by:order %}
+    {% if post.issues contains page.issue %}
+        {% if post.order == 1 %}
+            {% assign width='yui3-u-1' %}
+        {% else %}
+            {% assign width='yui3-u-1-2 m-yui3-u-1' %}
+        {% endif %}
+        {% assign content = post.content %}
+        <div class='{{ width }}'>
+            <div class='issue-block'>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.sub_title }}</p>
+            </div>
+        </div>
+    {% endif %}
+{% endsorted_for %}
+</div>

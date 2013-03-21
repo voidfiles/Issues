@@ -2,8 +2,8 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: https://dl.dropbox.com/u/133599/stash/ablaze_test
-title: An Example Issues Blog
+url: http://voidfiles.github.com/issues/
+title: Issues
 subtitle:  A blog for issues
 author: Testy Testerson
 simple_search: http://google.com/search

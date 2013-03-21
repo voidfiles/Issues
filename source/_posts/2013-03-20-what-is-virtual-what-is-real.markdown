@@ -1,0 +1,9 @@
+---
+layout: post
+title: "What is virtual? What is real?"
+sub_title: "Questions for Philip Rosedale"
+date: 2013-03-20 20:29
+issues: [1]
+post_type: text
+order: 1
+---
