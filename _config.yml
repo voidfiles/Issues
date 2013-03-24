@@ -24,7 +24,7 @@ subscribe_rss: /atom.xml
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year/:month/:day/:title/
+permalink: /post/:year/:month/:day/:title
 source: source
 destination: public
 plugins: plugins
@@ -49,6 +49,10 @@ jekyll_sort:
     group_by: issues
     dest: posts_by_issue
 
+
+jekyll_models: ['issues']
+jekyll_models_urls: 'rest-like'
+
 assets:
   #
   # Pathname of the destination of generated (bundled) assets relative
@@ -65,6 +69,7 @@ assets:
   sources:
     - _assets/js
     - _assets/scss
+  gzip: [ text/css, application/javascript ]
 
 compress:
     js:   ~

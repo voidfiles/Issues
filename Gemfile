@@ -9,3 +9,4 @@ gem 'stringex', '~> 1.4.0'
 gem "sass", "~> 3.2.7"
 gem 'rb-fsevent', '~> 0.9.1'
 gem "jekyll-assets", "~> 0.3.5"
+gem "jekyll-s3", "~> 2.4.2"

@@ -9,7 +9,9 @@ ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "rsync"
+deploy_default = "s3"
+
+s3_bucket      = "portalpress-test"
 
 ## -- Misc Configs -- ##
 
@@ -51,7 +53,7 @@ end
 desc "preview the site in a web browser"
 task :preview do
   puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"
-  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll --auto --server")
+  jekyllPid = Process.spawn("jekyll --auto --server")
   # sassPid = Process.spawn("sass --watch assets/scss/:#{source_dir}/assets/css/")
 
   trap("INT") {
@@ -126,6 +128,23 @@ task :new_page, :filename do |t, args|
   end
 end
 
+desc "Create a new issue in source"
+task :new_issue, :number do |t, args|
+  issue_number = args.number
+  page_dir = "#{source_dir}/issues/#{issue_number}"
+  mkdir_p page_dir
+  file = "#{page_dir}/index.markdown"
+  if File.exist?(file)
+    abort("rake aborted!") if ask("#{file} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+  end
+  puts "Creating new issue page: #{file}"
+  open(file, 'w') do |page|
+    page.puts "---"
+    page.puts "layout: issue"
+    page.puts "---"
+  end
+end
+
 desc "Clean out caches: .pygments-cache, .gist-cache, .sass-cache"
 task :clean do
   rm_rf [".pygments-cache/**", ".gist-cache/**", ".sass-cache/**", "source/stylesheets/screen.css"]
@@ -167,6 +186,16 @@ task :rsync do
   end
   puts "## Deploying website via Rsync"
   ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+end
+
+desc "Deploy website via s3"
+task :s3 do
+  puts "## Deploying website via S3"
+  puts "## Deploying static files with far forwards expires"
+  ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --add-header='Content-Encoding: gzip' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js.gs' --include '*.css.gz'")
+  ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js' --include '*.css'")
+  puts "## Deploying evyerthing else with normal"
+  ok_failed system("s3cmd sync --cf-invalidate --add-header='Cache-Control: max-age=180' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
 end
 
 def ok_failed(condition)

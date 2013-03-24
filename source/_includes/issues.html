@@ -3,14 +3,27 @@
 <div class='yui3-g'>
     {% for post in site.posts_by_issue[page.issue] %}
         {% if post.order == 1 %}
-            {% assign width='yui3-u-1' %}
+            {% assign width='1 first' %}
         {% else %}
-            {% assign width='yui3-u-1-2 m-yui3-u-1' %}
+            {% capture width %}{% cycle '2-5', '3-5', '3-5', '2-5' %}{% endcapture %}
         {% endif %}
         {% assign content = post.content %}
-        <div class='{{ width }}'>
-            <div class='issue-block'>
-                <h2>{{ post.title }}</h2>
+        <div class='yui3-u-{{ width }} m-yui3-u-1'>
+            <div class='issue-block block-type-{{post.post_type}} {% cycle 'block-color-1', 'block-color-2', 'block-color-3' %}'>
+                {% assign icon_class = '' %}
+                {% if post.post_type == 'audio' %}
+                    {% assign icon_class = 'icon-volume-up' %}
+                {% elsif post.post_type == 'video' %}
+                    {% assign icon_class = 'icon-video' %}
+                {% elsif post.post_type == 'picture' %}
+                    {% assign icon_class = 'icon-picture' %}
+                {% endif %}
+                {% if icon_class != '' %}
+                <h2>
+                    <i class='icon {{ icon_class }}'></i>
+                </h2>
+                {% endif %}
+                <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
                 <p>{{ post.sub_title }}</p>
             </div>
         </div>

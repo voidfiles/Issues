@@ -6,3 +6,8 @@ issue: 1
     {% assign index = true %}
     {% include issues.html %}
 </div>
+<script type="text/javascript">
+    var current_issue_permalink = '/issue/{{ page.issue}}/';
+    console.log();
+    window.history.replaceState({} , window.title, current_issue_permalink);
+</script>
