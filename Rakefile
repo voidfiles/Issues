@@ -11,7 +11,7 @@ rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
 deploy_default = "s3"
 
-s3_bucket      = "portalpress-test"
+s3_bucket      = "portalpress.mmmercury.com"
 
 ## -- Misc Configs -- ##
 
@@ -195,7 +195,7 @@ task :s3 do
   ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --add-header='Content-Encoding: gzip' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js.gs' --include '*.css.gz'")
   ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js' --include '*.css'")
   puts "## Deploying evyerthing else with normal"
-  ok_failed system("s3cmd sync --cf-invalidate --add-header='Cache-Control: max-age=180' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
+  ok_failed system("s3cmd put --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
 end
 
 def ok_failed(condition)
