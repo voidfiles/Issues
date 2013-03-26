@@ -1,3 +1,11 @@
+body {
+    font-family: $baseFontFamily;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $altFontFamily;
+}
+
 $heading_color: darken($white, 5%);
 
 .issue-block {
@@ -10,14 +18,18 @@ $heading_color: darken($white, 5%);
 }
 
 .first .issue-block {
-    height: 100px;
-    padding-top: 200px;
+    height: 150px;
+    padding-top: 150px;
 }
 
 .issue-block {
     h1, h2, h3, h4 {
         a {
             color: $heading_color;
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
     }

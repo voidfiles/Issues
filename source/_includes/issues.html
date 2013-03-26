@@ -1,15 +1,40 @@
 {% assign found_first = false %}
 
 <div class='yui3-g'>
-    {% for post in site.posts_by_issue[page.issue] %}
-        {% if post.order == 1 %}
-            {% assign width='1 first' %}
-        {% else %}
-            {% capture width %}{% cycle '2-5', '3-5', '3-5', '2-5' %}{% endcapture %}
-        {% endif %}
+    <div class='yui3-u-1 first m-yui3-u-1'>
+        {% assign post = site.posts_by_issue[page.issue][0] %}
+        <div class='issue-block block-type-{{post.post_type}} block-color-1'>
+            <div class='yui3-g'>
+                <div class='clearfix'>
+                    <div class='yui3-u-1-2 m-yui3-u-1 pull-right'>
+                        <div class='yui3-g'>
+                            <div class='yui3-u-1-6'>
+                                {% if page.issue != 1 %}
+                                <h4><a href='/issues/{{ page.issue|minus: '1' }}/'><i class='icon icon-double-angle-left'></i></a></h4>
+                                {% endif %}
+                            </div>
+                            <div class='yui3-u-2-3'>
+                                <h4>Issue {{page.issue}} {{ page.date_formatted }}</h4>
+                            </div>
+                            <div class='yui3-u-1-6'>
+                                {% if page.issue != site.current_issue and page.issue < site.current_issue %}
+                                <h4><a href='/issues/{{ page.issue|plus: "1" }}/'><i class='icon icon-double-angle-right'></i></a></h4>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='yui3-u-1'>
+                    <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                    <p>{{ post.sub_title }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for post in site.posts_by_issue[page.issue] offset:1 %}
         {% assign content = post.content %}
-        <div class='yui3-u-{{ width }} m-yui3-u-1'>
-            <div class='issue-block block-type-{{post.post_type}} {% cycle 'block-color-1', 'block-color-2', 'block-color-3' %}'>
+        <div class='yui3-u-{% cycle '2-5', '3-5', '3-5', '2-5' %} m-yui3-u-1'>
+            <div class='issue-block block-type-{{post.post_type}} {% cycle 'block-color-2', 'block-color-3', 'block-color-1' %}'>
                 {% assign icon_class = '' %}
                 {% if post.post_type == 'audio' %}
                     {% assign icon_class = 'icon-volume-up' %}

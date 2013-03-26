@@ -141,6 +141,8 @@ task :new_issue, :number do |t, args|
   open(file, 'w') do |page|
     page.puts "---"
     page.puts "layout: issue"
+    page.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
+    page.puts "issue: #{issue_number}"
     page.puts "---"
   end
 end
