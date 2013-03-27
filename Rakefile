@@ -11,7 +11,7 @@ rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
 deploy_default = "s3"
 
-s3_bucket      = "portalpress.mmmercury.com"
+s3_bucket      = "quasar.thedailyportal.com"
 
 ## -- Misc Configs -- ##
 
