@@ -1,7 +1,7 @@
 {% assign found_first = false %}
 
 <div class='yui3-g'>
-    <div class='yui3-u-1 first m-yui3-u-1'>
+    <div class='yui3-u-1 first m-yui3-u-1' style='background-image: {{ page.header_image }}'>
         {% assign post = site.posts_by_issue[page.issue][0] %}
         <div class='issue-block block-type-{{post.post_type}} block-color-1'>
             <div class='yui3-g'>
