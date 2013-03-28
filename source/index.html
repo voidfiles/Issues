@@ -4,10 +4,11 @@ issue: 1
 ---
 <div class="blog-index">
     {% assign index = true %}
+    {% assign current_issue = site.current_issue %}
     {% include issues.html %}
 </div>
 <script type="text/javascript">
-    var current_issue_permalink = '/issues/{{ page.issue }}/';
+    var current_issue_permalink = '/issues/{{ site.current_issue }}/';
     console.log();
     window.history.replaceState({} , window.title, current_issue_permalink);
 </script>

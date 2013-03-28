@@ -2,7 +2,7 @@
 
 <div class='yui3-g'>
     <div class='yui3-u-1 first m-yui3-u-1' style='background-image: {{ page.header_image }}'>
-        {% assign post = site.posts_by_issue[page.issue][0] %}
+        {% assign post = site.posts_by_issue[current_issue][0] %}
         <div class='issue-block block-type-{{post.post_type}} block-color-1'>
             <div class='yui3-g'>
                 <div class='clearfix'>
@@ -14,10 +14,10 @@
                                 {% endif %}
                             </div>
                             <div class='yui3-u-2-3'>
-                                <h4>Issue {{page.issue}} {{ page.date_formatted }}</h4>
+                                <h4>Issue {{current_issue}} {{ page.date_formatted }}</h4>
                             </div>
                             <div class='yui3-u-1-6'>
-                                {% if page.issue != site.current_issue and page.issue < site.current_issue %}
+                                {% if current_issue != site.current_issue and current_issue < site.current_issue %}
                                 <h4><a href='/issues/{{ page.issue|plus: "1" }}/'><i class='icon icon-double-angle-right'></i></a></h4>
                                 {% endif %}
                             </div>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    {% for post in site.posts_by_issue[page.issue] offset:1 %}
+    {% for post in site.posts_by_issue[current_issue] offset:1 %}
         {% assign content = post.content %}
         <div class='yui3-u-{% cycle '2-5', '3-5', '3-5', '2-5' %} m-yui3-u-1'>
             <div class='issue-block block-type-{{post.post_type}} {% cycle 'block-color-2', 'block-color-3', 'block-color-1' %}'>
