@@ -9,14 +9,13 @@ ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
-deploy_default = "s3"
 
-s3_bucket      = "portalpress.mmmercury.com"
 
 ## -- Misc Configs -- ##
 
 public_dir      = "public"    # compiled site directory
 source_dir      = "source"    # source file directory
+config_file     = '_config.yml'
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
@@ -33,14 +32,13 @@ desc "Generate jekyll site"
 task :generate do
   puts "## Generating Site with Jekyll"
   # system "sass --update assets/scss/:#{source_dir}/assets/css/"
-  system "jekyll"
+  system "jekyll build"
 end
 
 desc "Watch the site and regenerate when it changes"
 task :watch do
   puts "Starting to watch source with Jekyll and Compass."
-  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll --auto")
-  #sassPid = Process.spawn("sass --watch assets/scss/:#{source_dir}/assets/css/")
+  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll build -w")
 
   trap("INT") {
     [jekyllPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
@@ -53,8 +51,7 @@ end
 desc "preview the site in a web browser"
 task :preview do
   puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"
-  jekyllPid = Process.spawn("jekyll --auto --server")
-  # sassPid = Process.spawn("sass --watch assets/scss/:#{source_dir}/assets/css/")
+  jekyllPid = Process.spawn("jekyll serve -w")
 
   trap("INT") {
     [jekyllPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }

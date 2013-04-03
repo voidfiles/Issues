@@ -6,4 +6,5 @@ date: 2013-03-20 20:29
 issues: [1]
 post_type: text
 order: 1
+image: /images/1/girl-holding-gun.png
 ---
