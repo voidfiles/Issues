@@ -10,7 +10,8 @@ document_root  = "~/website.com/"
 rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
 
-
+deploy_default = 's3'
+s3_bucket = "portalpress.mmmercury.com"
 ## -- Misc Configs -- ##
 
 public_dir      = "public"    # compiled site directory
@@ -32,7 +33,7 @@ desc "Generate jekyll site"
 task :generate do
   puts "## Generating Site with Jekyll"
   # system "sass --update assets/scss/:#{source_dir}/assets/css/"
-  system "jekyll build"
+  system "jekyll build --config _config.yml,_confgi2.yml"
 end
 
 desc "Watch the site and regenerate when it changes"

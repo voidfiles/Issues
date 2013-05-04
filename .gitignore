@@ -5,3 +5,4 @@ source/assets/css/*.css
 .DS_Store
 _posts/
 issues/
+.vagrant

@@ -81,7 +81,3 @@ assets:
 compress:
     js:   ~
     css : 'sass'
-
-
-additional_configs:
-  - _config/*.yml

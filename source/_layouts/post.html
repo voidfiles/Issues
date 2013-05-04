@@ -1,8 +1,33 @@
----
-layout: default
-single: true
----
+{%include head.html%}
 
-<article class="hentry" role="article">
-  {% include article.html %}
-</article>
+<body>
+  <div class="story">
+    <div class="story-cover"><img src="/img/philip.jpg" alt="What is Virtual? What is Real? Cover photo"><div class="story-cover__headline"><h1><a href="/">The Daily Portal</a></h1>
+      <h2>{{ page.title }}</h2>
+    </div></div>
+    <div class="story-about">
+      <p>{{ page.sub_title }}</p>
+      <p class="by-line">by {{ page.author }}</p>
+    </div>
+    <div class="story-content">
+      <p class="story-intro">{{ page.story_intro }}</p>
+      {{ content | expand_urls: root_url }}
+      <p class="by-line">- {{ page.author }}</p>
+    </div>
+  </div>
+
+  <div class="back-home">
+    <p><a href="/"><i class="icon-home"></i> Back to Issue</a></p>
+  </div>
+
+  <div class="site-nav">
+    <ul>
+      <li class="site-nav__season"><a href="/season/"><i class="icon-calendar"></i>Season</a></li>
+      <li class="site-nav__about"><a href="/about/"><i class="icon-edit"></i>About</a></li>
+      <li class="site-nav__follow"><a><i class="icon-rss"></i>Follow</a></li>
+    </ul>
+  </div>
+
+{%include footer.html%}
+
+</body>
