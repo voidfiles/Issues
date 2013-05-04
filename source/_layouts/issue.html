@@ -42,7 +42,7 @@
               {% elsif post.post_type == 'picture' %}
                   {% assign icon_class = 'icon-picture' %}
               {% endif %}
-              <li class="cover-article {% if post.image %}has-thumbnail-cover-article{% endif %} {% cycle 'short-cover-article c1', 'long-cover-article c2', 'long-cover-article c3', 'short-cover-article c4' %}" {% if post.image %}style='background-image: url({{post.image}}) no-repeat left top;'{% endif %}>
+              <li class="cover-article {% if post.image %}has-thumbnail-cover-article{% endif %} {% cycle 'short-cover-article c1', 'long-cover-article c2', 'long-cover-article c3', 'short-cover-article c4' %}" {% if post.image %}style='background: url({{post.image}}) no-repeat left top;'{% endif %}>
                 <a href="{{ post.url }}">
                   <h2>
                       {% if icon_class != '' %}
@@ -57,5 +57,11 @@
           </ul>
         </div>
         {% include footer.html %}
+        <script type="text/javascript">
+            var current_issue_permalink = '/issues/{{ site.current_issue }}/';
+            if (window.location.href !== current_issue_permalink) {
+                window.history.replaceState({} , window.title, current_issue_permalink);
+            }
+        </script>
     </body>
 </html>

@@ -33,24 +33,17 @@ layout: blank
       <p><a href="#">Subscribe to the Portalkeeper’s log</a>, a two-way email correspondence with Jon about keeping The Daily Portal and how you can be a part of it.</p>
     </div>
 
-
-  <div class="site-nav site-nav-color-blue footer">
-    <ul>
-      <li class="site-nav__season"><a href="/season/"><i class="icon-calendar"></i>Season</a></li>
-      <li class="site-nav__about"><a href="/about/"><i class="icon-edit"></i>About</a></li>
-      <li class="site-nav__follow site-nav__current"><a><i class="icon-rss"></i>Follow</a></li>
-    </ul>
-  </div>
-
+  {% assign nav_class = 'site-nav-color-blue' %}
+  {% include bottom_nav.html %}
   <br>
   <br>
 
   </div>
 
-  <script src='/javascripts/vendor/jquery.js'></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script>
     $(document).ready( function() {
-      $('.social-bar__follow, .logo-diamond').hover( 
+      $('.social-bar__follow, .logo-diamond').hover(
       function() { $(this).toggleClass('animated pulse') });
 
     });

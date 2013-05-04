@@ -33,21 +33,15 @@ layout: blank
     </table>
   </div>
 
-  <div class="site-nav footer">
-    <ul>
-      <li class="site-nav__season"><a href="/season/"><i class="icon-calendar"></i>Season</a></li>
-      <li class="site-nav__about site-nav__current"><a><i class="icon-edit"></i>About</a></li>
-      <li class="site-nav__follow"><a href="/follow/"><i class="icon-rss"></i>Follow</a></li>
-    </ul>
-  </div>
+  {% include bottom_nav.html %}
 
   <br>
   <br>
 
-  <script src='/javascripts/vendor/jquery.js'></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
   <script>
     $(document).ready( function() {
-      $('.logo-diamond').hover( 
+      $('.logo-diamond').hover(
       function() { $(this).toggleClass('animated pulse') });
 
     });
