@@ -14,11 +14,11 @@
               <div class="numbers-box">
                 <ul class="number-links">
                   {% if page.issue != 1 %}
-                  <li class="number-links__prev"><a href="#">Previous Issue</a></li>
+                  <li class="number-links__prev"><a href="/issue/{{ current_issue|minus:'1' }}/">Previous Issue</a></li>
                   {% endif %}
-                  <li class="number-links__current">Issue {{current_issue}} {{ page.date_formatted }} – <i>September 30th, 2013</i></li>
+                  <li class="number-links__current"><a href='/issue/{{ current_issue}}/'>Issue {{current_issue}} — <i>{{ page.date_formatted }}</i></a></li>
                   {% if current_issue != site.current_issue and current_issue < site.current_issue %}
-                  <li class="number-links__next"><a href="#">Next Issue</a></li>
+                  <li class="number-links__next"><a href="/issue/{{ current_issue|plus:'1' }}/">Next Issue</a></li>
                   {% endif %}
                 </ul>
               </div>

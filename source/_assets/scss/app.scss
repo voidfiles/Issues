@@ -60,7 +60,7 @@
 .issue-1 .issue-cover { background: url("/img/issue-cover-n1.jpg") no-repeat top center; }
 
 .main-logo {
-  padding: 23px 23px 23px 107px;
+  padding: 25px 23px 25px 107px;
   margin-top: 15px;
   background: rgba( #4F3269, 0.5) url("/img/tdd-header-logo.png") no-repeat 23px center;
   display: inline-block;
@@ -216,6 +216,12 @@
 .site-nav { 
   @include grid-row(); 
   border-top: 1px solid rgba(#4D7986, 0.3);
+  a {
+    display: inline-block;
+    i {
+      line-height: inherit;
+    }
+  }
 }
 
 .site-nav.site-nav-color-blue a {

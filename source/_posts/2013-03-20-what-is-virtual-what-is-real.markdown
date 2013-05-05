@@ -3,7 +3,7 @@ layout: post
 title: "What is virtual? What is real?"
 sub_title: "Questions for Philip Rosedale"
 date: 2013-03-20 20:29
-issues: [1]
+issues: [2]
 post_type: text
 order: 1
 image: /img/issue-cover-n1.jpg

@@ -192,10 +192,10 @@ desc "Deploy website via s3"
 task :s3 do
   puts "## Deploying website via S3"
   puts "## Deploying static files with far forwards expires"
-  ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --add-header='Content-Encoding: gzip' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js.gs' --include '*.css.gz'")
-  ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js' --include '*.css'")
+  ok_failed system("s3cmd sync --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --add-header='Content-Encoding: gzip' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js.gs' --include '*.css.gz'")
+  ok_failed system("s3cmd sync --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js' --include '*.css'")
   puts "## Deploying evyerthing else with normal"
-  ok_failed system("s3cmd put --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
+  ok_failed system("s3cmd sync --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
 end
 
 def ok_failed(condition)
