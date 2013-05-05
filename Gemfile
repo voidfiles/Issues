@@ -11,5 +11,6 @@ gem 'rb-fsevent', '~> 0.9.1'
 gem "jekyll-assets", "~> 0.3.5"
 gem "jekyll-s3", "~> 2.4.2"
 gem "zurb-foundation", "~> 4.1.5", :require => false
+# gem "octopress", :git => "git://github.com/octopress/octopress.git"
 
 # gem 'jekyll', :path => '/Users/alex/code/jekyll/', :group => :development
