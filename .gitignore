@@ -3,3 +3,6 @@ Gemfile.lock
 source/assets/css/*.css
 .sass-cache
 .DS_Store
+_posts/
+issues/
+.vagrant

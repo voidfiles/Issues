@@ -1,8 +1,0 @@
----
-layout: post
-title: "Proteus"
-sub_title: 
-date: 2013-03-26 18:43
-issue: []
-post_type: text
----

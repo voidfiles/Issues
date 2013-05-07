@@ -9,14 +9,15 @@ ssh_port       = "22"
 document_root  = "~/website.com/"
 rsync_delete   = false
 rsync_args     = ""  # Any extra arguments to pass to rsync
+
 deploy_default = "s3"
 
 s3_bucket      = "quasar.thedailyportal.com"
-
 ## -- Misc Configs -- ##
 
 public_dir      = "public"    # compiled site directory
 source_dir      = "source"    # source file directory
+config_file     = '_config.yml'
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 stash_dir       = "_stash"    # directory to stash posts for speedy generation
 posts_dir       = "_posts"    # directory for blog files
@@ -33,14 +34,13 @@ desc "Generate jekyll site"
 task :generate do
   puts "## Generating Site with Jekyll"
   # system "sass --update assets/scss/:#{source_dir}/assets/css/"
-  system "jekyll"
+  system "jekyll build --config _config.yml,_confgi2.yml"
 end
 
 desc "Watch the site and regenerate when it changes"
 task :watch do
   puts "Starting to watch source with Jekyll and Compass."
-  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll --auto")
-  #sassPid = Process.spawn("sass --watch assets/scss/:#{source_dir}/assets/css/")
+  jekyllPid = Process.spawn({"OCTOPRESS_ENV"=>"preview"}, "jekyll build -w")
 
   trap("INT") {
     [jekyllPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
@@ -53,8 +53,7 @@ end
 desc "preview the site in a web browser"
 task :preview do
   puts "Starting to watch source with Jekyll and Compass. Starting Rack on port #{server_port}"
-  jekyllPid = Process.spawn("jekyll --auto --server")
-  # sassPid = Process.spawn("sass --watch assets/scss/:#{source_dir}/assets/css/")
+  jekyllPid = Process.spawn("jekyll serve -w")
 
   trap("INT") {
     [jekyllPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
@@ -84,7 +83,8 @@ task :new_post, :title do |t, args|
     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
     post.puts "sub_title: "
     post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
-    post.puts "issue: []"
+    post.puts "issues: []"
+    post.puts "order: "
     post.puts "post_type: text"
     post.puts "---"
   end
@@ -117,6 +117,7 @@ task :new_page, :filename do |t, args|
       page.puts "---"
       page.puts "layout: page"
       page.puts "title: \"#{title}\""
+      page.puts "sub_title: "
       page.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
       page.puts "comments: true"
       page.puts "sharing: true"
@@ -194,10 +195,10 @@ desc "Deploy website via s3"
 task :s3 do
   puts "## Deploying website via S3"
   puts "## Deploying static files with far forwards expires"
-  ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --add-header='Content-Encoding: gzip' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js.gs' --include '*.css.gz'")
-  ok_failed system("s3cmd put --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js' --include '*.css'")
+  ok_failed system("s3cmd sync --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --add-header='Content-Encoding: gzip' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js.gs' --include '*.css.gz'")
+  ok_failed system("s3cmd sync --add-header='Expires: Sat, 20 Nov 2286 18:46:39 GMT' --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.*' --include '*.js' --include '*.css'")
   puts "## Deploying evyerthing else with normal"
-  ok_failed system("s3cmd put --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
+  ok_failed system("s3cmd sync --acl-public --guess-mime-type -r #{public_dir}/ s3://#{s3_bucket} --exclude '*.js' --exclude '*.css' --exclude '*.js.gz' --exclude '*.css.gz' ")
 end
 
 def ok_failed(condition)
