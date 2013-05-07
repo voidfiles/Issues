@@ -101,7 +101,7 @@
   font-size: 20px;
 }
 .social-bar__adn {
-  font-family: "OpenSans";
+  font-family: OpenSans;
   font-weight: 700;
   font-size: 36px;
 }
@@ -245,7 +245,7 @@
 
 .site-nav a { 
   color: #4F3269;
-  font-family: "OpenSans";
+  font-family: OpenSans;
   font-size: 32px;
   font-weight: 700;
   @include transition-property(color);
@@ -358,7 +358,7 @@
   }
 }
 .story-content__img-title {
-  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-family: OpenSans, Helvetica, Arial, sans-serif;
   font-size: 18px;
   color: #959595;
   text-align: right;
@@ -379,7 +379,7 @@
   border-bottom: 1px solid rgba(#4D7986, 0.3);
 }
 .back-home a {
-  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-family: OpenSans, Helvetica, Arial, sans-serif;
   font-size: 36px;
   font-weight: 800;
 }
@@ -472,135 +472,180 @@
   background: url("/img/logo-diamond.png") no-repeat top left;
 }
 
-.diamond .social-bar { position: relative; overflow: visible; }
+@media screen and (min-width: 768px) {
+  .diamond .social-bar { position: relative; overflow: visible; }
 
-.diamond a {
-  position: absolute;
-  background: transparent;
-  color: #EDF1F3;
-  display: block;
-  border-radius: 0;
-  @include transition-property(all);
-  @include transition-duration(0.9s);
-}
-
-.diamond .social-bar__adn {
-  top: -18px;
-  left: 290px;
-  width: 270px;
-  height: 135px;
-  font-size: 18px;
-  font-weight: 800;
-  border-style: solid;
-  border-width: 0 135px 135px 135px;
-  border-color: transparent transparent #192D40 transparent;
-  strong { 
-    margin-left: -31px; 
+  .diamond a {
+    position: absolute;
+    background: transparent;
+    color: #EDF1F3;
     display: block;
-    margin-top: 25px;
+    border-radius: 0;
+    @include transition-property(all);
+    @include transition-duration(0.9s);
   }
-  span { font-size: 73px; font-weight: 700; padding-left: 10px; }
-  &:hover {
+
+  .diamond .social-bar__adn {
+    top: -18px;
+    left: 290px;
+    width: 270px;
+    height: 135px;
+    font-size: 18px;
+    font-weight: 800;
+    border-style: solid;
+    border-width: 0 135px 135px 135px;
+    border-color: transparent transparent #192D40 transparent;
+    strong { 
+      margin-left: -31px; 
+      display: block;
+      margin-top: 25px;
+    }
+    span { font-size: 73px; font-weight: 700; padding-left: 10px; }
+    &:hover {
+      color: #192D40;
+      border-color: transparent transparent #FFF transparent;
+    }
+  }
+
+
+  .diamond .social-bar__rss {
+    top: 496px;
+    left: 290px;
+    width: 270px;
+    height: 135px;
+    font-size: 18px;
+    font-weight: 800;
+    border-style: solid;
+    border-width: 135px 135px 0 135px;
+    border-color: #192D40 transparent transparent  transparent;
+    strong { 
+      margin-left: -31px; 
+      display: block;
+      margin-top: -130px;
+    }
+    i { font-size: 53px; font-weight: 700;}
+    span { padding-left: 15px; }
+    &:hover {
+      color: #192D40;
+      border-color: transparent transparent #FFF transparent;
+    }
+  }
+
+  .diamond .social-bar__tw {
+    top: 172px;
+    left: 100px;
+    width: 135px;
+    height: 270px;
+    font-size: 18px;
+    font-weight: 800;
+    border-style: solid;
+    border-width: 135px 135px 135px 0;
+    border-color: transparent #192D40 transparent  transparent;
+    i { 
+      font-size: 40px; 
+      font-weight: 700;
+      display: block;
+      margin: -20px 0 0 66px;
+    }
+    &:hover {
+      color: #192D40;
+      border-color: transparent #FFF transparent transparent;
+    }
+  }
+
+  .diamond .social-bar__fb {
+    top: 172px;
+    right: 50px;
+    width: 135px;
+    height: 270px;
+    font-size: 18px;
+    font-weight: 800;
+    border-style: solid;
+    border-width: 135px 0 135px 135px;
+    border-color: transparent transparent  transparent #192D40;
+    i { 
+      font-size: 40px; 
+      font-weight: 700;
+      display: block;
+      margin: -20px 0 0 -117px;
+    }
+    &:hover {
+      color: #192D40;
+      border-color: transparent transparent transparent #FFF;
+    }
+  }
+
+
+  .diamond .social-bar__follow {
+    top: 170px;
+    left: 287px;
+    width: 276px;
+    height: 276px;
+    font-size: 18px;
+    font-style: italic;
+    padding-top: 131px;
     color: #192D40;
-    border-color: transparent transparent #FFF transparent;
+    background: url("/img/diamond-heart.png") no-repeat center center;
+    &:hover {
+      color: #000;
+      border-color: transparent transparent transparent #FFF;
+    }
+  }
+
+  .social-bar-simple {
+    display: none;
+  }
+  .panel-subscribe {
+    padding: 50px 70px;
+    border: 2px solid  rgba( #192D40, 0.6) ;
+    font-size: 28px;
+    line-height: 1.53;
+    color: #192D40;
+    margin-bottom: 115px;
+    a { font-weight: 700; }
   }
 }
 
-
-.diamond .social-bar__rss {
-  top: 496px;
-  left: 290px;
-  width: 270px;
-  height: 135px;
-  font-size: 18px;
-  font-weight: 800;
-  border-style: solid;
-  border-width: 135px 135px 0 135px;
-  border-color: #192D40 transparent transparent  transparent;
-  strong { 
-    margin-left: -31px; 
+@media screen and (max-width: 768px) {
+  .social-bar-simple {
     display: block;
-    margin-top: -130px;
+    li {
+      display: inline-block;
+      a {
+        font-size: 350%;
+        &.social-bar__adn span {
+          font-size: 160%;
+          font-style: italic;
+        }
+      }
+    }
   }
-  i { font-size: 53px; font-weight: 700;}
-  span { padding-left: 15px; }
-  &:hover {
+  .diamond .social-bar { position: relative; visibility: hidden; }
+  .diamond img {display: none;}
+  .diamond {
+    @include clearfix();
+  }
+  .follow-page h1 {
+    text-align: center;
+
+    a.logo-diamond {
+      display: inline-block;
+      position: relative;
+      left: 0;
+      top: 22px;
+
+    }
+
+  }
+  .panel-subscribe {
+    padding: 10px 20px;
+    font-size: 20px;
+    line-height: 1.53;
     color: #192D40;
-    border-color: transparent transparent #FFF transparent;
+    margin-bottom: 115px;
+    a { font-weight: 700; }
   }
 }
-
-.diamond .social-bar__tw {
-  top: 172px;
-  left: 100px;
-  width: 135px;
-  height: 270px;
-  font-size: 18px;
-  font-weight: 800;
-  border-style: solid;
-  border-width: 135px 135px 135px 0;
-  border-color: transparent #192D40 transparent  transparent;
-  i { 
-    font-size: 40px; 
-    font-weight: 700;
-    display: block;
-    margin: -20px 0 0 66px;
-  }
-  &:hover {
-    color: #192D40;
-    border-color: transparent #FFF transparent transparent;
-  }
-}
-
-.diamond .social-bar__fb {
-  top: 172px;
-  right: 50px;
-  width: 135px;
-  height: 270px;
-  font-size: 18px;
-  font-weight: 800;
-  border-style: solid;
-  border-width: 135px 0 135px 135px;
-  border-color: transparent transparent  transparent #192D40;
-  i { 
-    font-size: 40px; 
-    font-weight: 700;
-    display: block;
-    margin: -20px 0 0 -117px;
-  }
-  &:hover {
-    color: #192D40;
-    border-color: transparent transparent transparent #FFF;
-  }
-}
-
-
-.diamond .social-bar__follow {
-  top: 170px;
-  left: 287px;
-  width: 276px;
-  height: 276px;
-  font-size: 18px;
-  font-style: italic;
-  padding-top: 131px;
-  color: #192D40;
-  background: url("/img/diamond-heart.png") no-repeat center center;
-  &:hover {
-    color: #000;
-    border-color: transparent transparent transparent #FFF;
-  }
-}
-
-.panel-subscribe {
-  padding: 50px 70px;
-  border: 2px solid  rgba( #192D40, 0.6) ;
-  font-size: 28px;
-  line-height: 1.53;
-  color: #192D40;
-  margin-bottom: 115px;
-  a { font-weight: 700; }
-}
-
 
 
 /* Season page */
@@ -645,7 +690,7 @@
 }
 
 .season-calendar thead {
-  font-family: "OpenSans", Helvetica, Arial, sans-serif;
+  font-family: OpenSans, Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: 800;
   color: #969696;
@@ -771,6 +816,49 @@
   .story-about { padding-left: 80px; font-size: 20px; }
   .back-home a { font-size: 23px; }
   .social-bar { visibility: hidden; }
+}
+
+@media screen and (max-width: 480px) {
+  .issue-cover__title {
+    background-color: #4F3269;
+  }
+  .long-cover-article, .short-cover-article, .about-tdd p {
+    width: 100%;
+  }
+
+  .issue-cover__headline {
+    margin-bottom: -129px;
+  }
+
+  .cover-articles {
+    margin-top: 129px;
+  }
+
+  .about-tdd p {
+    background: url("/img/about-tdd-logo.png") no-repeat 5px center;
+  }
+
+  li.has-thumbnail-cover-article {
+    background-image: none !important;
+  }
+
+  .number-links {
+    width: 100%;
+  }
+  .site-nav ul {
+    width: 100%;
+
+    li {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+  }
+
+  .story-content p {
+    font-size: 90%;
+    margin: 0 10px 30px;
+  }
+
 }
 
 
