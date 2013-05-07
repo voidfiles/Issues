@@ -8,7 +8,7 @@
         {% assign found_first = false %}
         {% assign post = site.posts_by_issue[current_issue][0] %}
         <div class="issue-{{ page.issue }}">
-          <div class="issue-cover" {% if page.image %}style='background: url("/img/issue-cover-n1.jpg") no-repeat top center;'{% endif %}>
+          <div class="issue-cover" {% if page.image %}style='background-image: url("/img/issue-cover-n1.jpg"); background-repeat: no-repeat; background-position: top center;'{% endif %}>
             {% include header.html %}
             <div class="issue-cover__headline">
               <div class="numbers-box">
@@ -42,7 +42,7 @@
               {% elsif post.post_type == 'picture' %}
                   {% assign icon_class = 'icon-picture' %}
               {% endif %}
-              <li class="cover-article {% if post.image %}has-thumbnail-cover-article{% endif %} {% cycle 'short-cover-article c1', 'long-cover-article c2', 'long-cover-article c3', 'short-cover-article c4' %}" {% if post.image %}style='background: url({{post.image}}) no-repeat left top;'{% endif %}>
+              <li class="cover-article {% if post.image %}has-thumbnail-cover-article{% endif %} {% cycle 'short-cover-article c1', 'long-cover-article c2', 'long-cover-article c3', 'short-cover-article c4' %}" {% if post.image %}style='background-image: url({{post.image}}); background-repeate: no-repeat; background-positon: left top;'{% endif %}>
                 <a href="{{ post.url }}">
                   <h2>
                       {% if icon_class != '' %}

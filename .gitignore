@@ -6,3 +6,4 @@ source/assets/css/*.css
 _posts/
 issues/
 .vagrant
+.dropbox
