@@ -6,7 +6,7 @@ date: 2013-03-20 20:30
 issues: [1]
 post_type: picture
 order: 5
-image: "img/issue-cover-n1.jpg"
+image: "/img/issue-cover-n1.jpg"
 author: Jon Mitchell
 story_intro: "<strong>I DID NOT</strong> expect to enjoy the Wisdom 2.0 conference, so for the first day of it, I didn't. Expectations have a way of fulfilling themselves."
 ---

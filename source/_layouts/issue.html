@@ -1,5 +1,5 @@
 {% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
-<doctype html>
+<!doctype html>
 <html>
     {% include head.html %}
     <body>
@@ -58,7 +58,7 @@
         </div>
         {% include footer.html %}
         <script type="text/javascript">
-            var current_issue_permalink = '/issues/{{ site.current_issue }}/';
+            var current_issue_permalink = '/issue/{{ site.current_issue }}/';
             if (window.location.href !== current_issue_permalink) {
                 window.history.replaceState({} , window.title, current_issue_permalink);
             }
